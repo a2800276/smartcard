@@ -85,6 +85,7 @@ static VALUE PCSC_IoRequest_set_protocol(VALUE self, VALUE rbProtocol) {
 #ifdef MAKE_RDOC_HAPPY
 	mSmartcard = rb_define_module("Smartcard");
 	mPcsc = rb_define_module_under(mSmartcard, "PCSC");
+	mFfi = rb_define_module_under(mPcsc, "FFI");
 #endif
 
 /* :Document-class: Smartcard::PCSC::IoRequest
@@ -95,7 +96,7 @@ static VALUE PCSC_IoRequest_set_protocol(VALUE self, VALUE rbProtocol) {
  * is an API meant for people familiar with the PC/SC specification.
  */
 void Init_PCSC_IoRequest() {
-	cPcscIoRequest = rb_define_class_under(mPcsc, "IoRequest", rb_cObject);
+	cPcscIoRequest = rb_define_class_under(mFfi, "IoRequest", rb_cObject);
 	rb_define_alloc_func(cPcscIoRequest, PCSC_IoRequest_alloc);
 	rb_define_method(cPcscIoRequest, "initialize", PCSC_IoRequest_initialize, 0);	
 	rb_define_method(cPcscIoRequest, "protocol", PCSC_IoRequest_get_protocol, 0);	

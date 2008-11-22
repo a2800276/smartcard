@@ -43,7 +43,7 @@ class ContainersTest < Test::Unit::TestCase
 
   # tests the SmartCard::PCSC::IoRequest container
   def test_io_request
-    io_request = Smartcard::PCSC::IoRequest.new
+    io_request = Smartcard::PCSC::FFI::IoRequest.new
     [Smartcard::PCSC::PROTOCOL_T0, Smartcard::PCSC::PROTOCOL_T1, Smartcard::PCSC::PROTOCOL_RAW].each do |t_protocol|
       io_request.protocol = t_protocol
       r_protocol = io_request.protocol

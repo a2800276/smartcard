@@ -239,7 +239,7 @@ static VALUE PCSC_Context_get_status_change(VALUE self, VALUE rbReaderStates, VA
 
 /* :Document-method: last_error
  * call-seq:
- *      card.last_error() --> last_error
+ *      last_error() --> last_error
  * 
  * The error code returned by the last PC/SC call. Useful for recovering from exceptions.
  * 
@@ -258,6 +258,7 @@ static VALUE PCSC_Context_last_error(VALUE self) {
 #ifdef MAKE_RDOC_HAPPY
 	mSmartcard = rb_define_module("Smartcard");
 	mPcsc = rb_define_module_under(mSmartcard, "PCSC");
+	mFfi = rb_define_module_under(mPcsc, "FFI");
 #endif
 
 /* :Document-class: Smartcard::PCSC::Context
@@ -265,7 +266,7 @@ static VALUE PCSC_Context_last_error(VALUE self) {
  * Wraps a _SCARDCONTEXT_ structure.
  */
 void Init_PCSC_Context() {
-	cPcscContext = rb_define_class_under(mPcsc, "Context", rb_cObject);
+	cPcscContext = rb_define_class_under(mFfi, "Context", rb_cObject);
 	rb_define_alloc_func(cPcscContext, PCSC_Context_alloc);
 	rb_define_method(cPcscContext, "initialize", PCSC_Context_initialize, 1);
 	rb_define_method(cPcscContext, "release", PCSC_Context_release, 0);	

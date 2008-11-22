@@ -286,6 +286,7 @@ static VALUE PCSC_ReaderStates_acknowledge_events(VALUE self) {
 #ifdef MAKE_RDOC_HAPPY
 	mSmartcard = rb_define_module("Smartcard");
 	mPcsc = rb_define_module_under(mSmartcard, "PCSC");
+	mFfi = rb_define_module_under(mPcsc, "FFI");
 #endif
 
 /* :Document-class: Smartcard::PCSC::ReaderStates

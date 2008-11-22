@@ -9,6 +9,7 @@ void Init_pcsc();
 /* Namespace structure. */
 extern VALUE mSmartcard; /* Smartcard module / namespace */
 extern VALUE mPcsc; /* Smartcard::PCSC module / namespace */
+extern VALUE mFfi; /* Smartcard::PCSC::FFI module / namespace */
 
 /* Class Smartcard::PCSC::ReaderStates */
 extern VALUE cPcscReaderStates;

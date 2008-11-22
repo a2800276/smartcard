@@ -10,7 +10,7 @@ class SmokeTest < Test::Unit::TestCase
 
   # smoke-test to ensure that the extension loads and can call into the PC/SC library
   def test_smoke
-    context = Smartcard::PCSC::Context.new(Smartcard::PCSC::SCOPE_SYSTEM)
+    context = Smartcard::PCSC::FFI::Context.new(Smartcard::PCSC::SCOPE_SYSTEM)
 
     reader_groups = context.list_reader_groups
     readers1 = context.list_readers reader_groups

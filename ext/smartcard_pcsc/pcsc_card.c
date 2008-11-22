@@ -102,7 +102,7 @@ static VALUE PCSC_Card_reconnect(VALUE self, VALUE rbShareMode, VALUE rbPreferre
 
 /* :Document-method: disconnect
  * call-seq:
- *      context.disconnect(disposition) --> self
+ *      card.disconnect(disposition) --> self
  * 
  * Terminates the connection made using Card#new. The Card object is invalid afterwards.
  * Wraps _SCardDisconnect_ in PC/SC.
@@ -450,6 +450,7 @@ static VALUE PCSC_Card_last_error(VALUE self) {
 #ifdef MAKE_RDOC_HAPPY
 	mSmartcard = rb_define_module("Smartcard");
 	mPcsc = rb_define_module_under(mSmartcard, "PCSC");
+	mFfi = rb_define_module_under(mPcsc, "FFI");
 #endif
 
 /* :Document-class: Smartcard::PCSC::Card
@@ -464,7 +465,7 @@ void Init_PCSC_Card() {
 	atr_id = rb_intern("atr"); _rbAtrKey = ID2SYM(atr_id);
 	reader_names_id = rb_intern("reader_names"); _rbReaderNamesKey = ID2SYM(reader_names_id);
 	
-	cPcscCard = rb_define_class_under(mPcsc, "Card", rb_cObject);
+	cPcscCard = rb_define_class_under(mFfi, "Card", rb_cObject);
 	rb_define_alloc_func(cPcscCard, PCSC_Card_alloc);
 	rb_define_method(cPcscCard, "initialize", PCSC_Card_initialize, 4);
 	rb_define_method(cPcscCard, "disconnect", PCSC_Card_disconnect, 1);	
