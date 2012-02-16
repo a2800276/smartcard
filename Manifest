@@ -16,6 +16,7 @@ ext/smartcard_pcsc/pcsc_surrogate_wintypes.h
 lib/smartcard/pcsc_exception.rb
 lib/smartcard/pcsc_card.rb
 lib/smartcard/pcsc_context.rb
+lib/smartcard/pcsc_mock.rb
 lib/smartcard.rb
 LICENSE
 Manifest
