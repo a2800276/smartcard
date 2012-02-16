@@ -1,0 +1,47 @@
+
+This document details changes in the API from the base version of PCSC
+
+* moved 'original' wrapped classes to Smartcard::PCSC::FFI:: module
+* Context and Card in Smartcard::PCSC inherit from FFI modules and provide reasonable 
+  default paremters where approritate
+
+* Assumptions regarding "reasonable" defaults:
+	* reader_name 	-> defaults to first returned by list_readers
+	* scope 	-> SCOPE_SYSTEM
+	* share		-> SHARE_EXCLUSIVE
+	* pref_protocol -> PROTOCOL_ANY
+	* disposition(for disconnect) -> DISPOSITION_UNPOWER
+	* disposition(for transaction) > DISPOSITION_LEAVE
+	* initialization(reconnect)   -> INITIALIZATION_RESET (warm reset)
+	* IORequest	-> according to status[:protocol] for send, .new for recv
+	
+
+* Methods added to take blocks to provide a more rubyish interface:
+	* Card.card {}, Context.context {} cf. File.open() {}
+	*    also aliased as Card/Context.connect (...)
+	* card.transaction
+
+* Added tests and mock Card and Context to test without reader/inserted card
+  (export TEST_NO_CARD=yes; rake test)
+
+* Everything *should* be entirely compatible, could be used as a drop in replacement.
+  Obviously, code written using this versions features wouldn't be backwards compatible. 
+
+
+TODO 
+
+* I'm not using ReaderStates, and I'm not entirely sure I understand the interface, 
+  so I've left that untouched.
+
+* Update the documentation in the README
+
+* Provide some utility to map numeric constants to ruby symbols for easier 
+  `puts` debugging ...
+
+* I was having some issues with the windows version of the library, but still need to debug.
+
+* provide compiled versions (and test on) Window
+
+
+
+	 
