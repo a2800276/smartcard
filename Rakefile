@@ -15,7 +15,7 @@ Echoe.new('smartcard') do |p|
   p.rdoc_pattern = /^(lib|bin|tasks|ext)|^BUILD|^README|^CHANGELOG|^TODO|^LICENSE|^COPYING$/
   
   p.eval = proc do |p|
-    if Platform.windows?
+    if Echoe::Platform.windows?
       p.files += ['lib/smartcard/pcsc.so']
       p.platform = Gem::Platform::CURRENT
 
